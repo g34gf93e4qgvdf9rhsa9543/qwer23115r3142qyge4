@@ -1,0 +1,42 @@
+<Brushes>
+  <Brush Name="BlockStyle.Title.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="30" />
+    </Styles>
+  </Brush>
+  <Brush Name="BlockStyle.ConstantDrag.Sensitivity.Title.Text" Font="FiraSansExtraCondensed-Light" TextVerticalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="20" />
+    </Styles>
+  </Brush>
+  <Brush Name="BlockStyle.ConstantDrag.Sensitivity.Text" Font="FiraSansExtraCondensed-Medium" TextVerticalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="13" />
+    </Styles>
+  </Brush>
+  <Brush Name="AutoBlocker.Popup.Button.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="13" />
+    </Styles>
+  </Brush>
+  <Brush Name="AutoBlocker.EffectShield.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="17" />
+    </Styles>
+  </Brush>
+
+  
+  <Brush Name="BlockStyle.Description.Text" Font="Galahad" TextVerticalAlignment="Top" TextHorizontalAlignment="Left">
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="15" />
+    </Styles>
+  </Brush>
+
+  <Brush Name="AutoBlocker.GameMenu.Text" Font="Galahad" FontColor="#EEE0C7FF" FontSize="22" TextHorizontalAlignment="Center">
+    <Layers>
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#EEE0C7FF" TextBlur="0" TextGlowColor="#EEE0C7FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#EEE0C7FF" />
+    </Styles>
+  </Brush>
+</Brushes>
