@@ -1,42 +1,198 @@
-<Brushes>
-  <Brush Name="BlockStyle.Title.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="30" />
-    </Styles>
-  </Brush>
-  <Brush Name="BlockStyle.ConstantDrag.Sensitivity.Title.Text" Font="FiraSansExtraCondensed-Light" TextVerticalAlignment="Center">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="20" />
-    </Styles>
-  </Brush>
-  <Brush Name="BlockStyle.ConstantDrag.Sensitivity.Text" Font="FiraSansExtraCondensed-Medium" TextVerticalAlignment="Center">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="13" />
-    </Styles>
-  </Brush>
-  <Brush Name="AutoBlocker.Popup.Button.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="13" />
-    </Styles>
-  </Brush>
-  <Brush Name="AutoBlocker.EffectShield.Text" Font="SourceHanSerifSC-Regular" TextVerticalAlignment="Center">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="17" />
-    </Styles>
-  </Brush>
+<Prefab>
+  <Constants>
+    <Constant Name="EscapeMenu.Background.Width" BrushName="EscapeMenu.Background" BrushLayer="Default" BrushValueType="Width"/>
+    <Constant Name="EscapeMenu.Background.Height" BrushName="EscapeMenu.Background" BrushLayer="Default" BrushValueType="Height"/>
 
-  
-  <Brush Name="BlockStyle.Description.Text" Font="Galahad" TextVerticalAlignment="Top" TextHorizontalAlignment="Left">
-    <Styles>
-      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="15" />
-    </Styles>
-  </Brush>
+    <Constant Name="ContextButton.Width" BrushName="ButtonBrush2" BrushLayer="Default" BrushValueType="Width"/>
+    <Constant Name="ContextButton.Height" BrushName="ButtonBrush2" BrushLayer="Default" BrushValueType="Height"/>
+  </Constants>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Brush.Color="#000000FF" Brush.AlphaFactor="0.4">
+      <Children>
+      <Standard.Background/>
+        <Widget Id="RightPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="694" SuggestedHeight="1080" HorizontalAlignment="Center" Sprite="CharacterCreation\character_creation_panel" VerticalAlinment="Center" >
+          <Children>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="670" SuggestedHeight="55" HorizontalAlignment="Right" Brush="Stage.Title.Text" Text="AutoBlocker"/>
 
-  <Brush Name="AutoBlocker.GameMenu.Text" Font="Galahad" FontColor="#EEE0C7FF" FontSize="22" TextHorizontalAlignment="Center">
-    <Layers>
-    </Layers>
-    <Styles>
-      <Style Name="Default" FontColor="#EEE0C7FF" TextBlur="0" TextGlowColor="#EEE0C7FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#EEE0C7FF" />
-    </Styles>
-  </Brush>
-</Brushes>
+            <!--Reset Button-->
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="150" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Popup.Done.Button.NineGrid" Command.Click="ResetAction" IsEnabled="true" UpdateChildrenStates="true" PositionYOffset="210" PositionXOffset="230">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="AutoBlocker.Popup.Button.Text" Text="Reset" />
+              </Children>
+            </ButtonWidget>
+
+            <Widget Id="InnerPanel" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="573" SuggestedHeight="550" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="14">
+              <Children>
+                
+                <ScrollbarWidget Id="VerticalScrollbar" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="8" HorizontalAlignment="Right" MarginRight="-17" VerticalAlignment="Center" MarginTop="15" MarginBottom="15" AlignmentAxis="Vertical" Handle="VerticalScrollbarHandle" MaxValue="100" MinValue="0" >
+                  <Children>
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="4" HorizontalAlignment="Center" Sprite="BlankWhiteSquare_9" Brush.Color="#5a4033FF" Brush.AlphaFactor="0.2" />
+                    <ImageWidget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="10" SuggestedWidth="8" HorizontalAlignment="Center" Brush="FaceGen.Scrollbar.Handle" />
+                  </Children>
+                </ScrollbarWidget>
+
+                <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" AutoHideScrollBars="true" ClipRect="ClipRect" InnerPanel="ClipRect\List" VerticalScrollbar="..\VerticalScrollbar">
+                  <Children>
+
+                    <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true" >
+                      <Children>
+
+                        <ListPanel Id="List" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                          <Children>
+
+                            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="20" MarginTop="0">
+                              <Children>
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="BlockStyle.Title.Text" Text="BlockStyle" HorizontalAlignment="Center" ClipContents="false"/>
+                                <Standard.DropdownWithHorizontalControl Id="StringOption" HorizontalAlignment="Center" IsVisible="true" Parameter.SelectorDataSource="{WeaponBlockStyleSelector}" MarginTop="50"/>
+
+                                <!--BlockStyle Description Panel-->
+                                <Widget Id="BlockStyleDescriptionPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="400" SuggestedHeight="200" HorizontalAlignment="Center" MarginTop="80" IsEnabled="false">
+                                  <Children>
+                                    <!--Sprite="BlankWhiteSquare_9" Brush.Color="#000000FF" Brush.AlphaFactor="0.4"-->
+                                    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="200"  MarginTop="50">
+                                      <Children>
+                                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="100" SuggestedWidth="670" SuggestedHeight="55"  HorizontalAlignment="Left" Brush="BlockStyle.Description.Text" Text="@WeaponBlockStyleDescription"/>
+                                      </Children>
+                                    </Widget>
+                                  </Children>
+                                </Widget>
+                              </Children>
+                            </Widget>
+
+                            <ListPanel Id="List" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="20" MarginRight="20" LayoutImp.LayoutMethod="VerticalBottomToTop" IsVisible="true">
+                              <Children>
+                                <!--Ignore Shield bool-->
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="200" HorizontalAlignment="Center" MarginTop="50" MarginLeft="20">
+                                  <Children>
+                                    <ListPanel Id="List" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="0" MarginRight="0" LayoutImp.LayoutMethod="VerticalTopToBottom">
+                                      <Children>
+                                        <!--IsSelected="@OptionValueAsBoolean"-->
+                                        <Widget Id="BooleanOption" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" IsVisible="true" UpdateChildrenStates="true">
+                                          <Children>
+                                            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" MarginLeft="0" Brush="SPOptions.Checkbox.Empty.Button" ButtonType="Toggle" ToggleIndicator="ToggleIndicator" UpdateChildrenStates="true" IsSelected="@IgnoreShield">
+                                              <Children>
+                                                <ImageWidget Id="ToggleIndicator" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="SPOptions.Checkbox.Full.Button" />
+                                              </Children>
+                                            </ButtonWidget>
+                                          </Children>
+                                        </Widget>
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="BlockStyle.Title.Text" Text="Ignore Shield" VerticalAlignment="Center" HorizontalAlignment="Center" MarginBottom="10" ClipContents="false" IsEnabled="false"/>
+                                      </Children>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+
+                                <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@IgnoreShieldOpposite" MarginTop="20" MarginBottom="60">
+                                  <Children>
+                                    <ListPanel Id="List" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="10" MarginRight="0" LayoutImp.LayoutMethod="VerticalBottomToTop">
+                                      <Children>
+                                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="2" VerticalAlignment="Bottom" MarginTop="20" MarginBottom="40" Sprite="SPScoreboard\bottom_divider" Brush.AlphaFactor="0.5"/>
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="BlockStyle.Title.Text" Text="Shield BlockStyle" VerticalAlignment="Center" HorizontalAlignment="Center" MarginBottom="20" ClipContents="false" IsEnabled="false"/>
+                                        <Standard.DropdownWithHorizontalControl Id="StringOption" HorizontalAlignment="Center" Parameter.SelectorDataSource="{ShieldBlockStyleSelector}" MarginTop="0" MarginLeft="0"/>
+                                        <!--ShieldBlockStyle Description Panel-->
+                                        <Widget Id="ShieldBlockStyleDescriptionPanel" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="400" SuggestedHeight="200" HorizontalAlignment="Center" MarginTop="0" IsEnabled="false">
+                                          <Children>
+                                            <!--Sprite="BlankWhiteSquare_9" Brush.Color="#000000FF" Brush.AlphaFactor="0.4"-->
+                                            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="200"  MarginTop="50">
+                                              <Children>
+                                                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MinHeight="100" SuggestedWidth="670" SuggestedHeight="55"  HorizontalAlignment="Left" Brush="BlockStyle.Description.Text" Text="@ShieldBlockStyleDescription"/>
+                                              </Children>
+                                            </Widget>
+                                          </Children>
+                                        </Widget>
+                                      </Children>
+                                    </ListPanel>
+                                  </Children>
+                                </Widget>
+                              </Children>
+                            </ListPanel>
+
+                             
+
+                            <!--BlockStyle ConstantDrag XSensitivityPanel-->
+                            <Widget Id="ConstantDragSensitivityXPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" IsEnabled="true" IsVisible="@ShouldShowConstantDragSensitivitySliders" MarginTop="100">
+                              <Children>
+                                <SliderWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="338" SuggestedHeight="42" HorizontalAlignment="Center" DoNotUpdateHandleSize="true" Filler="Filler" Handle="SliderHandle" IsDiscrete="false" MaxValueFloat="@MaxConstantDragXSensitivity" MinValueFloat="@MinConstantDragXSensitivity" ValueFloat="@ConstantDragXSensitivity">
+                                  <Children>
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="BlockStyle.ConstantDrag.Sensitivity.Title.Text" IsEnabled="false" Text="ConstantDragXSensitivity" MarginBottom="110"/>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="362" SuggestedHeight="38" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_canvas" IsEnabled="false" />
+                                    <Widget Id="Filler" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_fill" ClipContents="true">
+                                      <Children>
+                                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_fill" />
+                                      </Children>
+                                    </Widget>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="65" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_frame" IsEnabled="false" />
+                                    <Widget Id="SliderHandle" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="14" SuggestedHeight="38" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="SPOptions.Slider.Handle" />
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="BlockStyle.ConstantDrag.Sensitivity.Text" IsEnabled="false" Text="@ConstantDragXSensitivityToString"/>
+                                  </Children>
+                                </SliderWidget>
+                                <!--<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="BlockStyle.ConstantDrag.Sensitivity.Text" Text="1.0" HorizontalAlignment="Center" VerticalAlignment="Center" ClipContents="false" MarginTop="5"/>-->
+                              </Children>
+                            </Widget>
+
+                            <!--BlockStyle ConstantDrag YSensitivityPanel-->
+                            <Widget Id="ConstantDragSensitivityYPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" SuggestedHeight="200" VerticalAlignment="Top" IsVisible="@ShouldShowConstantDragSensitivitySliders">
+                              <Children>
+                                <SliderWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="338" SuggestedHeight="42" HorizontalAlignment="Center" DoNotUpdateHandleSize="true" Filler="Filler" Handle="SliderHandle" IsDiscrete="false" MaxValueFloat="@MaxConstantDragYSensitivity" MinValueFloat="@MinConstantDragYSensitivity" ValueFloat="@ConstantDragYSensitivity" MarginTop="100">
+                                  <Children>
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="BlockStyle.ConstantDrag.Sensitivity.Title.Text" IsEnabled="false" Text="ConstantDragYSensitivity" MarginBottom="110"/>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="362" SuggestedHeight="38" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_canvas" IsEnabled="false" />
+                                    <Widget Id="Filler" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_fill" ClipContents="true">
+                                      <Children>
+                                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_fill" />
+                                      </Children>
+                                    </Widget>
+                                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="65" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="SPOptions\standart_slider_frame" IsEnabled="false" />
+                                    <Widget Id="SliderHandle" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="14" SuggestedHeight="38" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="SPOptions.Slider.Handle" />
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="BlockStyle.ConstantDrag.Sensitivity.Text" IsEnabled="false" Text="@ConstantDragYSensitivityToString"/>
+                                  </Children>
+                                </SliderWidget>
+                                <!--<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="BlockStyle.ConstantDrag.Sensitivity.Text" Text="1.0" HorizontalAlignment="Center" VerticalAlignment="Center" ClipContents="false" MarginTop="5"/>-->
+                              </Children>
+                            </Widget>
+
+                            <Widget Id="ConstantDragSensitivityPanels" WidthSizePolicy="CoverChildren" HeightPolicy="CoverChildren" VerticalAlignment="Center" IsEnabled="true">
+                              <Children>
+                              </Children>
+                            </Widget>
+                            
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </Widget>
+                    <!--Scroll Gradient-->
+                    <!--<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="576" SuggestedHeight="57" HorizontalAlignment="Right" PositionXOffset="13" VerticalAlignment="Bottom" Sprite="CharacterCreation\character_creation_scroll_gradient" />-->
+
+                  </Children>
+                </ScrollablePanel>
+              </Children>
+            </Widget>
+
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" IsEnabled="true" MarginLeft="40" MarginTop="850">
+              <Children>
+                <ListPanel Id="List2" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginLeft="0" MarginRight="0" LayoutImp.LayoutMethod="HorizontalCentered" IsEnabled="true" MarginTop="0">
+                  <Children>
+                    <!--Cancel Button-->
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="64" HorizontalAlignment="Left" VerticalAlignment="Bottom" Brush="Popup.Cancel.Button.NineGrid" Command.Click="CancelAction" IsEnabled="true" UpdateChildrenStates="true" MarginRight="40">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="Cancel" />
+                      </Children>
+                    </ButtonWidget>
+
+                    <!--Apply Button-->
+                    <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="250" SuggestedHeight="64" HorizontalAlignment="Right" VerticalAlignment="Bottom" Brush="Popup.Done.Button.NineGrid" Command.Click="ApplyAction" IsEnabled="true" UpdateChildrenStates="true">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="Apply" />
+                      </Children>
+                    </ButtonWidget>
+                  </Children>
+                </ListPanel>
+              </Children>
+            </Widget>
+          </Children>
+        </Widget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
